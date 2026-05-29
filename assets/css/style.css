@@ -1,5 +1,5 @@
 :root{
-  --background:#161616;
+  --background:#000000;
   --surface:#1f1f1f;
   --surface-small:#222222;
   --surface-hover:#252525;
@@ -50,18 +50,27 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  background:
-  radial-gradient(
-  circle at bottom, 
-  rgba(29, 78, 216, 0.25), 
-  transparent 40%
-  ), 
-  var(--background)
+  background-image:
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:url("../image/firstbg.webp");
+  background-size:cover;
+  background-position:center;
+
+  opacity:.5;
+  mix-blend-mode:screen;
 }
 
 .hero-content{
   text-align:center;
   transform:translateY(-80px)
+  position:relative;
+  z-index:2;
 }
 
 .hero-content h1{
