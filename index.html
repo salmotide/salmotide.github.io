@@ -1,26 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!--up-->
+<html>
 <head>
-    <meta charset="UTF-8">
+    <title>Portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/awal.css">
 </head>
+
 <body>
-    <div class="header">
-        <ul class="header">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<nav class="navbar">
+    <div class="container">
+        <h2 class="logo">Salmotide</h2>
+        <button class="menu-toggle">
+            <span></span> 
+            <span></span> 
+            <span></span> 
+        </button>
     </div>
-    <div class="content">
-        <h1>Welcome to My Website</h1>
-        <p>This is a sample paragraph to demonstrate the structure of an HTML document.</p>
+</nav>
+<div class="menu-panel">
+    <div class="menu-profile">
+      <img src="assets/image/logo.webp" class="profile-logo" alt="Logo Salmotide">
+      <ul class="nav-links">
+        <li>
+            <a href="#home">Home</a>
+        </li>
+        <li>
+            <a href="#about">About</a>
+        </li>
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+    </ul>
     </div>
-    <div class="footer">
-        <p>&copy; 2024 My Website</p>
+    <div class="profile-bottom">
+      <h3>Salmotide</h3>
+      <p>Belajar PHP & Fronend Design
     </div>
-    <script src="js/awal.js"></script>
+</div>
+<div class="overlay"></div>
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <p class="hero-label">Web Developer - PHP Learner - Linux User</p>
+            <h1>Portofolio Salmotide</h1>
+            <p>
+                Belajar web development dan php
+            </p>
+            <button><a href="#projects">Lihat project</a></button>
+        </div>
+    </div>
+    <div class="scroll-indicator">&#9660;</div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <h2>TentangKu</h2>
+        <p>
+            aku adalah mahasiswa Teknologi Informasi yang sedang belajar
+            web development, beckend PHP,
+            dan linux development environment.
+        </p>
+    </div>
+</section>
+
+<section class="projects" id="projects">
+    <div class="container">
+        <h2>Projects</h2>
+        <div class="project-grid">
+          <a href="#home" class="project-link featured-link">
+            <div class="project-card featured-card">
+              <img src="assets/image/projects/porto.webp" class="project-image" alt="Preview Portofolio Website">
+              <h3>Portofolio Website</h3>
+              <p>Website portofolio yang di buat menggunakan HTML, CSS, dan JavaScript.</p>
+              <div class="tech-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+            </div>
+          </a> 
+        </div> 
+            <div class="project-card small-card">
+                <h3>Currently Learning</h3>
+                <p>PHP, frontend design system, dan backend basic.</p>
+            </div>
+            <div class="project-card small-card">
+                <h3>Linux</h3>
+                <p>Linux Mint, terminal workflow, dan vim setup.</p>
+            </div>
+            <div class="project-card featured-card">
+                <h3>Todo List App</h3>
+                <p>Project berikutnya untuk belajar javaScript logic, tambah data, edit, hapus, dan menyimpan task</p>
+                <div class="tech-tags">
+                  <span>JavaScript</span>
+                  <span>DOM</span>
+                  <span>LocalStorage</span>
+                </div>
+            </div>
+            <a href="https://github.com/salmotide/SalBot" class="project-link featured-link" blank_>
+            <div class="project-card featured-card">
+                <img src="assets/image/projects/bot.webp" class="project-image" alt="Preview Portofolio Website">
+                <h3>Bot WhatsApp</h3>
+                <p>Local Bot Wa for Sticker, Yt video downloder</p>
+                <div class="tech-tags">
+                  <span>JavaScript</span>
+                  <span>LocalStorage</span>
+                </div>
+            </div>
+          </a>
+        </div>
+</section>
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Contact</h2>
+      <div class="contact-list">
+        <div class="contact-item">
+          <p>Email</p>
+          <h3></h3>
+        </div>
+        <div class="contact-item">
+          <p>Github</p>
+          <h3>@salmotide</h3>
+        </div>
+        <div class="contact-item">
+          <p>Curently</p>
+          <h3>Learning PHP & frontend design</h3>
+        </div>
+      </div>
+    </div>
+</section>
+<footer class="footer">
+  <p>© 2026 Salmotide. Build with HTML, CSS, and JavaScript.</p>
+</footer>
+<script src="assets/js/script.js"></script>
 </body>
 </html>
