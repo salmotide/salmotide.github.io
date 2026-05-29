@@ -479,7 +479,7 @@ body {
   border-radius:16px;
   flex:1;
   transition:0.3s;
-  min-height:220px;
+  min-height:10px;
   transition:0.3s ease;
 }
 
