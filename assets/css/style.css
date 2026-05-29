@@ -61,6 +61,7 @@ body {
 
 .hero-content{
   text-align:center;
+  transform:translateY(-80px)
 }
 
 .hero-content h1{
@@ -84,6 +85,41 @@ body {
   width:90%;
   max-width:1200px;
   margin:0 auto;
+}
+
+.hero-content h1{
+  font-size:64px;
+  font-family:'Poppins', sans-serif;
+
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+  border-right:3px solid var(--ocean);
+  width:0;
+
+  animation:
+    typing 3s steps(21) forwards,
+    blink .8s infinite;
+}
+
+@keyframes typing{
+  from{
+    width:0;
+  }
+  to{
+    width:16.2ch;
+  }
+}
+
+@keyframes blink{
+  50%{
+    border-color:transparent;
+  }
+}
+
+.hero a{
+  color:var(--text);
+  text-decoration:none;
 }
 
 .btn{
