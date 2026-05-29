@@ -78,7 +78,7 @@ body {
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
-  opacity:.5;
+  opacity:.8;
   mix-blend-mode:screen;
   z-index:0;
   pointer-events:none;
@@ -604,7 +604,18 @@ body {
   .btn{
     padding:10px 22px;
   }
+  .navbar .container{
+    width:100%;
+    padding:13px 14px;
+  }
 
+  .logo{
+    font-size:22px;
+  }
+
+  .menu-toggle{
+    margin-left:auto;
+  }
   .menu-panel{
     top:-800px;
     left:0;
