@@ -1,3 +1,4 @@
+<--bug-->
 :root{
   --background:#000000;
   --surface:#1f1f1f;
@@ -50,7 +51,6 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  background-image:
 }
 
 .hero::before{
@@ -68,7 +68,7 @@ body {
 
 .hero-content{
   text-align:center;
-  transform:translateY(-80px)
+  transform:translateY(-80px);
   position:relative;
   z-index:2;
 }
@@ -554,7 +554,11 @@ body {
   border-top:1px solid rgba(255,255,255,0.05);
 }
 
-@media(max-width:768px){
+@media(max-width:1000px){
+  body{
+    border:10px solid red;
+  }
+
   .menu-panel{
     top:-800px;
     left:0;
@@ -568,20 +572,18 @@ body {
     text-align:center;
     border-left:none;
     border-bottom:1px solid rgba(255,255,255,0.05);
-    display:none;
   }
-  .small-card{
-    display:none;
-  }
+
   .profile-logo{
     width:90px;
     height:90px;
-    margin-left:auto;
-    margin-bottom:40px;
+    margin:0 auto 40px;
   }
+
   .profile-bottom{
     display:none;
   }
+
   .menu-panel.active{
     top:80px;
     left:0;
@@ -608,39 +610,21 @@ body {
     margin-bottom:0;
   }
 
-  .project-grid{
+  .project-grid,
+  .contact-grid{
     grid-template-columns:1fr;
   }
 
-  .featured-link
-  .featured-card
-  .important{
+  .featured-link,
+  .featured-card,
+  .important,
+  .contact-link,
+  .contact-card{
     grid-column:span 1;
   }
 
   .hero-content h1{
     font-size:36px;
-  }
-
-  .contact-list{
-    flex-direction:column;
-    gap:24px;
-  }
-
-  .contact-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-  }
-
-  .contact-item p{
-    margin-bottom:0;
-  }
-
-  .contact-item h3{
-    font-size:18px;
-    text-align:right;
   }
 }
 
