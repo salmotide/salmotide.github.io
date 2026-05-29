@@ -464,7 +464,7 @@ body {
 
 @media(max-width:768px){
   .menu-panel{
-    top:-300px;
+    top:-800px;
     left:0;
     right:auto;
     width:100%;
@@ -521,7 +521,8 @@ body {
   }
 
   .featured-link
-  .featured-card{
+  .featured-card
+  .important{
     grid-column:span 1;
   }
 
