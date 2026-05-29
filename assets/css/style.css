@@ -80,6 +80,12 @@ body {
   margin-bottom:16px;
 }
 
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:0 auto;
+}
+
 .btn{
   display:inline-block;
   margin-top:24px;
@@ -514,12 +520,9 @@ body {
     grid-template-columns:1fr;
   }
 
+  .featured-link
   .featured-card{
-    grid-column:span 3;
-  }
-  
-  .featured-link{
-    grid-column:span 3;
+    grid-column:span 1;
   }
 
   .hero-content h1{
