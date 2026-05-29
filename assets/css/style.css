@@ -577,9 +577,32 @@ body {
   border-top:1px solid rgba(255,255,255,0.05);
 }
 
-@media(max-width:1000px){
-  body{
-    border:10px solid red;
+@media(max-width:768px){
+  .hero-content{
+    transform:translateY(-40px);
+    padding:0 16px;
+  }
+
+  .hero-content h1{
+    font-size:36px;
+    line-height:1.15;
+  }
+
+  .hero-content p{
+    font-size:14px;
+  }
+
+  .hero-label{
+    font-size:13px;
+  }
+
+  .hero::before{
+    background-position:center;
+    opacity:.35;
+  }
+
+  .btn{
+    padding:10px 22px;
   }
 
   .menu-panel{
