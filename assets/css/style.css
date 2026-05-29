@@ -80,7 +80,8 @@ body {
   margin-bottom:16px;
 }
 
-button{
+.btn{
+  display:inline-block;
   margin-top:24px;
   background:var(--ocean);
   color:var(--text);
@@ -91,16 +92,12 @@ button{
   font-weight:600;
   cursor:pointer;
   transition:0.3s ease;
+  text-decoration:none;
 }
 
-button:hover{
+.btn:hover{
   background:var(--ocean-hover);
   transform:translateY(-3px);
-}
-
-button a{
-  text-decoration:none;
-  color:black;
 }
 
 .menu-toggle{
@@ -292,6 +289,10 @@ button a{
   padding:100px 0;
 }
 
+.important{
+  grid-column:span 3;
+}
+
 .project-link{
   display:block;
   text-decoration:none;
@@ -300,7 +301,7 @@ button a{
 }
 
 .featured-link{
-  grid-column:span 2;
+  grid-column:span 1;
 }
 
 .project-grid{
@@ -324,7 +325,7 @@ button a{
   transform:translateY(-6px);
   background:var(--surface-hover);
   transform:translateY(-8px);
-  border-color:rgbq(94,234,212,0.2);
+  border-color:rgba(94,234,212,0.2);
   box-shadow:0 10px 30px rgba(29,78,216,0.15);
 }
 
@@ -351,7 +352,6 @@ button a{
 }
 
 .featured-card{
-  grid-column:span 2;
   background:
     linear-gradient(
       135deg,
@@ -425,13 +425,13 @@ button a{
   display:flex;
   justify-content:space-between;
   gap:40px;
-  flex:wrap;
+  flex-warp:wrap;
 }
 
 .contact-item{
   flex:1;
   min-width:220px;
-  padding-bottom;20px;
+  padding-bottom:20px;
   border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
@@ -518,7 +518,7 @@ button a{
     grid-column:span 3;
   }
   
-  .futured-link{
+  .featured-link{
     grid-column:span 3;
   }
 
