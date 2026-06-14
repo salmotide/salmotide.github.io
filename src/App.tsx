@@ -64,6 +64,7 @@ function App() {
   const removeWindow = (windowId: WindowId) => {
     setOpenWindows((current) => current.filter((id) => id !== windowId));
     setClosingWindows((current) => current.filter((id) => id !== windowId));
+    setActiveMobileCard((current) => (current === windowId ? "home" : current));
   };
 
   const renderedWindowIds =
