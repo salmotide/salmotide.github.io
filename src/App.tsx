@@ -1,122 +1,124 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+
+import MiniHatsu from "./components/minihatsu";
+import DesktopWindow from "./components/DesktopWindow";
+import WorldScene from "./components/world/WorldScene";
+import useDragWindow from "./hooks/useDragWindow";
+
+type WindowId = "about" | "projects" | "contact";
+
+const windowContent = {
+  about: {
+    title: "About Me",
+    label: "Student ~ Builder ~ Explorer",
+    heading: "I like making things feel alive.",
+    body: "I am learning web development, Linux customization, and interactive UI. This portfolio is not just a page. It is my small digital world.",
+    position: { x: 600, y: 140 },
+  },
+  projects: {
+    title: "Projects",
+    label: "Things I build",
+    heading: "My Projects",
+    body: "Ocean Startpage, Todo CLI, Portfolio Desktop, and this interactive world system. More projects will be added here later.",
+    position: { x: 680, y: 220 },
+  },
+  contact: {
+    title: "Contact",
+    label: "Find me here",
+    heading: "Let's Connect",
+    body: "You can add your GitHub, email, Instagram, or other links here later.",
+    position: { x: 760, y: 300 },
+  },
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [scene, setScene] = useState<"desktop" | "world">("desktop");
+  const [openWindows, setOpenWindows] = useState<WindowId[]>([]);
+  const [closingWindows, setClosingWindows] = useState<WindowId[]>([]);
+  const welcomeWindow = useDragWindow({ x: 110, y: 110 });
+
+  if (scene === "world") {
+    return <WorldScene onExit={() => setScene("desktop")} />;
+  }
+
+  const openWindow = (windowId: WindowId) => {
+    setClosingWindows((current) => current.filter((id) => id !== windowId));
+    setOpenWindows((current) => {
+      if (current.includes(windowId)) return current;
+      return [...current, windowId];
+    });
+  };
+
+  const closeWindow = (windowId: WindowId) => {
+    setClosingWindows((current) => {
+      if (current.includes(windowId)) return current;
+      return [...current, windowId];
+    });
+  };
+
+  const removeWindow = (windowId: WindowId) => {
+    setOpenWindows((current) => current.filter((id) => id !== windowId));
+    setClosingWindows((current) => current.filter((id) => id !== windowId));
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
+    <main className="desktop">
+      <nav className="dock">
+        <button type="button">Home</button>
+        <button type="button" onClick={() => openWindow("about")}>
+          About
         </button>
-      </section>
+        <button type="button" onClick={() => openWindow("projects")}>
+          Projects
+        </button>
+        <button type="button" onClick={() => openWindow("contact")}>
+          Contact
+        </button>
+      </nav>
 
-      <div className="ticks"></div>
+      <DesktopWindow
+        title="Welcome"
+        initialPosition={{ x: 110, y: 110 }}
+        canClose={false}
+        dragState={welcomeWindow}
+      >
+        <p className="label">Web Developer ~ Linux User ~ Ocean UI Builder</p>
+        <h1>Hi, I&apos;m Salmotide</h1>
+        <p>
+          I build clean, ocean-themed web projects with interactive UI and
+          playful ideas.
+        </p>
+      </DesktopWindow>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {openWindows.map((windowId) => {
+        const content = windowContent[windowId];
+        const isClosing = closingWindows.includes(windowId);
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        return (
+          <DesktopWindow
+            key={windowId}
+            title={content.title}
+            initialPosition={content.position}
+            onClose={() => closeWindow(windowId)}
+            isClosing={isClosing}
+            onCloseAnimationEnd={() => removeWindow(windowId)}
+          >
+            <p className="label">{content.label}</p>
+            <h1>{content.heading}</h1>
+            <p>{content.body}</p>
+          </DesktopWindow>
+        );
+      })}
+
+      <MiniHatsu
+        windowRef={welcomeWindow.windowRef}
+        windowPosition={welcomeWindow.windowPosition}
+        setWindowPosition={welcomeWindow.setWindowPosition}
+        onEnterWorld={() => setScene("world")}
+      />
+    </main>
+  );
 }
 
-export default App
+export default App;

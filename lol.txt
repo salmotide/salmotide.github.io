@@ -1,0 +1,6 @@
+      <MiniHatsu
+        windowRef={windowRef}
+        windowPosition={windowPosition}
+        setWindowPosition={setWindowPosition}
+        onEnterWorld={() => setScene("world")}
+      />
