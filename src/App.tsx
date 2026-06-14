@@ -27,7 +27,7 @@ const windowContent = {
     title: "Contact",
     label: "Find me here",
     heading: "Let's Connect",
-    body: "You can add your GitHub, email, Instagram, or other links here later.",
+    body: "GitHub: salmotide | YouTube: @salmotide",
     position: { x: 760, y: 300 },
   },
 };
