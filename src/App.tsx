@@ -7,6 +7,7 @@ import WorldScene from "./components/world/WorldScene";
 import useDragWindow from "./hooks/useDragWindow";
 
 type WindowId = "about" | "projects" | "contact";
+type MobileCardId = "home" | WindowId;
 
 const windowContent = {
   about: {
@@ -36,6 +37,8 @@ function App() {
   const [scene, setScene] = useState<"desktop" | "world">("desktop");
   const [openWindows, setOpenWindows] = useState<WindowId[]>([]);
   const [closingWindows, setClosingWindows] = useState<WindowId[]>([]);
+  const [activeMobileCard, setActiveMobileCard] =
+    useState<MobileCardId>("home");
   const welcomeWindow = useDragWindow({ x: 110, y: 110 });
 
   if (scene === "world") {
@@ -43,6 +46,7 @@ function App() {
   }
 
   const openWindow = (windowId: WindowId) => {
+    setActiveMobileCard(windowId);
     setClosingWindows((current) => current.filter((id) => id !== windowId));
     setOpenWindows((current) => {
       if (current.includes(windowId)) return current;
@@ -62,17 +66,52 @@ function App() {
     setClosingWindows((current) => current.filter((id) => id !== windowId));
   };
 
+  const renderedWindowIds =
+    activeMobileCard !== "home" && !openWindows.includes(activeMobileCard)
+      ? [activeMobileCard, ...openWindows]
+      : openWindows;
+
   return (
     <main className="desktop">
       <nav className="dock">
-        <button type="button">Home</button>
-        <button type="button" onClick={() => openWindow("about")}>
+        <button
+          type="button"
+          className={`${openWindows.length === 0 ? "desktop-active" : ""} ${
+            activeMobileCard === "home" ? "mobile-active" : ""
+          }`}
+          onClick={() => {
+            setActiveMobileCard("home");
+            setOpenWindows([]);
+            setClosingWindows([]);
+          }}
+        >
+          Home
+        </button>
+        <button
+          type="button"
+          className={`${openWindows.includes("about") ? "desktop-active" : ""} ${
+            activeMobileCard === "about" ? "mobile-active" : ""
+          }`}
+          onClick={() => openWindow("about")}
+        >
           About
         </button>
-        <button type="button" onClick={() => openWindow("projects")}>
+        <button
+          type="button"
+          className={`${
+            openWindows.includes("projects") ? "desktop-active" : ""
+          } ${activeMobileCard === "projects" ? "mobile-active" : ""}`}
+          onClick={() => openWindow("projects")}
+        >
           Projects
         </button>
-        <button type="button" onClick={() => openWindow("contact")}>
+        <button
+          type="button"
+          className={`${
+            openWindows.includes("contact") ? "desktop-active" : ""
+          } ${activeMobileCard === "contact" ? "mobile-active" : ""}`}
+          onClick={() => openWindow("contact")}
+        >
           Contact
         </button>
       </nav>
@@ -82,6 +121,7 @@ function App() {
         initialPosition={{ x: 110, y: 110 }}
         canClose={false}
         dragState={welcomeWindow}
+        mobileHidden={activeMobileCard !== "home"}
       >
         <p className="label">Web Developer ~ Linux User ~ Ocean UI Builder</p>
         <h1>Hi, I&apos;m Salmotide</h1>
@@ -91,7 +131,7 @@ function App() {
         </p>
       </DesktopWindow>
 
-      {openWindows.map((windowId) => {
+      {renderedWindowIds.map((windowId) => {
         const content = windowContent[windowId];
         const isClosing = closingWindows.includes(windowId);
 
@@ -103,6 +143,7 @@ function App() {
             onClose={() => closeWindow(windowId)}
             isClosing={isClosing}
             onCloseAnimationEnd={() => removeWindow(windowId)}
+            mobileHidden={activeMobileCard !== windowId}
           >
             <p className="label">{content.label}</p>
             <h1>{content.heading}</h1>

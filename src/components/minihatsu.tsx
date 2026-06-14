@@ -31,6 +31,7 @@ const CHARACTER_SIZE = 72;
 const NORMAL_SPEED = 8;
 const PUSH_SPEED = 2;
 const PORTAL_DISTANCE = 180;
+const MOBILE_QUERY = "(max-width: 640px)";
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
@@ -55,13 +56,20 @@ function isNearBottomRightPortal(position: Position) {
   );
 }
 
+function isInteractiveElement(target: EventTarget | null) {
+  return target instanceof Element && Boolean(target.closest(".window, .dock"));
+}
+
 export default function MiniHatsu({
   windowRef,
   windowPosition,
   setWindowPosition,
   onEnterWorld,
 }: MiniHatsuProps) {
-  const [position, setPosition] = useState<Position>({ x: 720, y: 320 });
+  const [position, setPosition] = useState<Position>(() => ({
+    x: clamp(720, 0, window.innerWidth - CHARACTER_SIZE),
+    y: clamp(320, 0, window.innerHeight - CHARACTER_SIZE),
+  }));
   const [direction, setDirection] = useState<Direction>("front");
   const [isMoving, setIsMoving] = useState(false);
   const [isReacting, setIsReacting] = useState(false);
@@ -70,6 +78,8 @@ export default function MiniHatsu({
   const windowPositionRef = useRef(windowPosition);
   const positionRef = useRef(position);
   const isPushingRef = useRef(false);
+  const touchTargetRef = useRef<Position | null>(null);
+  const activeTouchPointerId = useRef<number | null>(null);
 
   useEffect(() => {
     windowPositionRef.current = windowPosition;
@@ -83,6 +93,71 @@ export default function MiniHatsu({
     isPushingRef.current = value;
     setIsPushing(value);
   };
+
+  const reactOrEnterWorld = () => {
+    setIsReacting(true);
+    setTimeout(() => setIsReacting(false), 900);
+
+    if (isNearBottomRightPortal(positionRef.current)) {
+      onEnterWorld();
+    }
+  };
+
+  useEffect(() => {
+    const mobileMedia = window.matchMedia(MOBILE_QUERY);
+
+    const setTouchTarget = (event: PointerEvent) => {
+      touchTargetRef.current = {
+        x: clamp(
+          event.clientX - CHARACTER_SIZE / 2,
+          0,
+          window.innerWidth - CHARACTER_SIZE,
+        ),
+        y: clamp(
+          event.clientY - CHARACTER_SIZE / 2,
+          0,
+          window.innerHeight - CHARACTER_SIZE,
+        ),
+      };
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!mobileMedia.matches || isInteractiveElement(event.target)) return;
+
+      activeTouchPointerId.current = event.pointerId;
+      setTouchTarget(event);
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (
+        !mobileMedia.matches ||
+        activeTouchPointerId.current !== event.pointerId ||
+        isInteractiveElement(event.target)
+      ) {
+        return;
+      }
+
+      setTouchTarget(event);
+    };
+
+    const handlePointerEnd = (event: PointerEvent) => {
+      if (activeTouchPointerId.current === event.pointerId) {
+        activeTouchPointerId.current = null;
+      }
+    };
+
+    window.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerup", handlePointerEnd);
+    window.addEventListener("pointercancel", handlePointerEnd);
+
+    return () => {
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerup", handlePointerEnd);
+      window.removeEventListener("pointercancel", handlePointerEnd);
+    };
+  }, []);
 
   useEffect(() => {
     const keys = new Set<string>();
@@ -190,6 +265,30 @@ export default function MiniHatsu({
           moving = true;
         }
 
+        if (!moving && touchTargetRef.current) {
+          const target = touchTargetRef.current;
+          const distanceX = target.x - current.x;
+          const distanceY = target.y - current.y;
+          const distance = Math.hypot(distanceX, distanceY);
+
+          if (distance <= speed) {
+            moveX = distanceX;
+            moveY = distanceY;
+            touchTargetRef.current = null;
+          } else {
+            moveX = (distanceX / distance) * speed;
+            moveY = (distanceY / distance) * speed;
+          }
+
+          moving = true;
+
+          if (Math.abs(distanceX) > Math.abs(distanceY)) {
+            setDirection(distanceX > 0 ? "right" : "left");
+          } else {
+            setDirection(distanceY > 0 ? "front" : "back");
+          }
+        }
+
         const nextPosition = {
           x: clamp(current.x + moveX, 0, window.innerWidth - CHARACTER_SIZE),
           y: clamp(current.y + moveY, 0, window.innerHeight - CHARACTER_SIZE),
@@ -217,6 +316,23 @@ export default function MiniHatsu({
     };
   }, [onEnterWorld, setWindowPosition, windowRef]);
 
+  useEffect(() => {
+    const keepCharacterOnScreen = () => {
+      setPosition((current) => {
+        const nextPosition = {
+          x: clamp(current.x, 0, window.innerWidth - CHARACTER_SIZE),
+          y: clamp(current.y, 0, window.innerHeight - CHARACTER_SIZE),
+        };
+
+        positionRef.current = nextPosition;
+        return nextPosition;
+      });
+    };
+
+    window.addEventListener("resize", keepCharacterOnScreen);
+    return () => window.removeEventListener("resize", keepCharacterOnScreen);
+  }, []);
+
   const getHatsuImage = () => {
     if (isReacting || isPushing) return clickGif;
 
@@ -242,10 +358,7 @@ export default function MiniHatsu({
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
-      onClick={() => {
-        setIsReacting(true);
-        setTimeout(() => setIsReacting(false), 900);
-      }}
+      onClick={reactOrEnterWorld}
       aria-label="Mini Hatsu"
     >
       {isNearPortal && <span className="hatsu-bubble">Press E to enter</span>}

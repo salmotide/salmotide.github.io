@@ -16,6 +16,7 @@ type DesktopWindowProps = {
   onClose?: () => void;
   isClosing?: boolean;
   onCloseAnimationEnd?: () => void;
+  mobileHidden?: boolean;
   dragState?: DragWindowState;
 };
 
@@ -27,6 +28,7 @@ export default function DesktopWindow({
   onClose,
   isClosing = false,
   onCloseAnimationEnd,
+  mobileHidden = false,
   dragState,
 }: DesktopWindowProps) {
   const internalDragState = useDragWindow(initialPosition);
@@ -44,13 +46,16 @@ export default function DesktopWindow({
       ref={windowRef}
       className={`window ${isDragging ? "is-dragging" : ""} ${
         isClosing ? "is-closing" : ""
-      }`}
+      } ${mobileHidden ? "is-mobile-hidden" : ""}`}
       style={{
         left: `${windowPosition.x}px`,
         top: `${windowPosition.y}px`,
       }}
       onAnimationEnd={(event) => {
-        if (event.animationName === "windowClose") {
+        if (
+          event.animationName === "windowClose" ||
+          event.animationName === "mobileCardClose"
+        ) {
           onCloseAnimationEnd?.();
         }
       }}
