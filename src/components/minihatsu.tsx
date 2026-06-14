@@ -57,7 +57,14 @@ function isNearBottomRightPortal(position: Position) {
 }
 
 function isInteractiveElement(target: EventTarget | null) {
-  return target instanceof Element && Boolean(target.closest(".window, .dock"));
+  return (
+    target instanceof Element &&
+    Boolean(target.closest(".window, .dock, .hatsu"))
+  );
+}
+
+function isMobileViewport() {
+  return window.matchMedia(MOBILE_QUERY).matches;
 }
 
 export default function MiniHatsu({
@@ -104,8 +111,6 @@ export default function MiniHatsu({
   };
 
   useEffect(() => {
-    const mobileMedia = window.matchMedia(MOBILE_QUERY);
-
     const setTouchTarget = (event: PointerEvent) => {
       touchTargetRef.current = {
         x: clamp(
@@ -122,21 +127,29 @@ export default function MiniHatsu({
     };
 
     const handlePointerDown = (event: PointerEvent) => {
-      if (!mobileMedia.matches || isInteractiveElement(event.target)) return;
+      if (
+        !event.isPrimary ||
+        !isMobileViewport() ||
+        isInteractiveElement(event.target)
+      ) {
+        return;
+      }
 
+      event.preventDefault();
       activeTouchPointerId.current = event.pointerId;
       setTouchTarget(event);
     };
 
     const handlePointerMove = (event: PointerEvent) => {
       if (
-        !mobileMedia.matches ||
+        !isMobileViewport() ||
         activeTouchPointerId.current !== event.pointerId ||
         isInteractiveElement(event.target)
       ) {
         return;
       }
 
+      event.preventDefault();
       setTouchTarget(event);
     };
 
@@ -181,6 +194,11 @@ export default function MiniHatsu({
       moveX: number,
       moveY: number,
     ) => {
+      if (isMobileViewport()) {
+        updatePushing(false);
+        return;
+      }
+
       if (moveX === 0 && moveY === 0) {
         updatePushing(false);
         return;
