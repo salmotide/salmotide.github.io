@@ -1,0 +1,274 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100svh;
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* dark overlay */
+.bg-low {
+  position: absolute;
+  inset: 0;
+  background-color: var(--low);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* blurred full background */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px);
+  transform: scale(1.08);
+  z-index: 1;
+}
+
+/* circle image in center */
+.circle {
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  clip-path: circle(66vmin at center);
+  z-index: 2;
+}
+
+/* circle border + small lines */
+.circle-ui {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--ui-color);
+  border-radius: 50%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* small outer tick lines */
+.circle-ui::before {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+
+  background: repeating-conic-gradient(
+    from 0deg,
+    var(--ui-color) 0deg 0.7deg,
+    transparent 0.7deg 4deg
+  );
+
+  mask: radial-gradient(
+    circle,
+    transparent 0 65%,
+    black 48.5% 50%,
+    transparent 70% 100%
+  );
+}
+
+/* inner thin border */
+.circle-ui::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+}
+
+/* profile */
+.profile {
+  position: absolute;
+  left: 70px;
+  bottom: 30px;
+  width: 320px;
+  height: 100px;
+  padding: 15px 20px;
+  background: var(--bg-card-left);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  z-index: 4;
+  border: 2px solid white;
+}
+
+.profile:hover {
+    background: var(--bg-card-left-hover);
+}
+
+.profile-pic {
+  width: 70px;
+  height: 70px;
+  background-color: var(--sec-bg);
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.profile-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-text h1 {
+  font-size: 20px;
+  color: var(--text);
+}
+
+.profile-text p {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/*aboutme*/
+.aboutme {
+    position: absolute;
+    bottom: 160px;
+    width: 267px;
+    height: 70px;
+    background: white; /* this becomes the border */
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    overflow: hidden;
+    text-decoration: none;
+    z-index: 4;
+    cursor: pointer;
+    isolation: isolate;
+}
+
+/* inside background */
+.aboutme::before {
+    content: "";
+    position: absolute;
+    inset: 2px; /* border thickness */
+    background: var(--bg-card-left);
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+.aboutme:hover::before {
+    background: var(--bg-card-left-hover);
+}
+
+.aboutme h1{
+    position: relative;
+    left: 40px;
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.aboutme:hover h1{
+    transform:  translateX(10px);
+    text-shadow: 0 0 10px rgba(32, 38, 122, 0.8);
+}
+
+/*project*/
+.btnproject{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background: white;
+    color: var(--text);
+    width: 379px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
+    overflow: hidden;
+    text-decoration: none;
+    z-index: 4;
+    cursor: pointer;
+    isolation: isolate;
+}
+
+/* inside background */
+.btnproject::before {
+    content: "";
+    position: absolute;
+    inset: 2px; /* border thickness */
+    background: var(--bg-card-left);
+    clip-path: polygon(21% 0, 100% 0, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+.btnproject:hover::before {
+    background: var(--bg-card-left-hover);
+}
+
+.btnproject h1{
+    position: relative;
+    left: 140px;
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.btnproject:hover h1{
+    transform: translate(-10px, -5px);
+    text-shadow: 0 0 10px rgba(32, 38, 122, 0.8);
+}
+
+.sosial{
+    z-index: 4;
+    position: relative;
+    display: flex;
+    top: 20px;
+    left: 50px;
+    gap: 20px
+}
+
+.imgsos{
+    width: 50px;
+    height: 50px;
+}
+
+.imgsos a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    width: 50px;
+    height: 60px;
+
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.imgsos:hover a {
+    transform: translate(5px, 5px);
+}
+
+.imgsos img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.line{
+    width: 50px;
+    height: 3px;
+    background-color: white;
+}

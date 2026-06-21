@@ -1,0 +1,16 @@
+:root{
+    --font: "ComicShannsMono Nerd Font", "ComicShannsMono NF", monospace, bold;
+    --text: #000000;
+
+    --bg-card-left: linear-gradient(45deg, #ffffff, #a0a5aa);
+    --bg-card-left-hover: linear-gradient(45deg, #ffffff, #bac0c5);
+    --bg-card-right: linear-gradient(325deg, #ffffff, #a0a5aa);
+    --bg-card-right-hover: linear-gradient(325deg, #ffffff, #bac0c5);
+    --sec-bg: #18202d;
+    --bg-img: url(../img/hatsu.png);
+    --low: rgba(0, 0, 0, 0.25);
+
+    --circle-radius: 66vmin;
+    --circle-size: calc(var(--circle-radius) * 2);
+    --ui-color: rgba(255, 255, 255, 0.65);
+}
