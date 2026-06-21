@@ -121,8 +121,8 @@ body {
   position: absolute;
   left: 70px;
   bottom: 30px;
-  width: 320px;
-  height: 100px;
+  width: 340px;
+  height: 120px;
   padding: 15px 20px;
   background: var(--bg-card-left);
   border-radius: 12px;
@@ -166,22 +166,22 @@ body {
 }
 
 .profile-text h1 {
-  font-size: 20px;
+  font-size: 25px;
   color: var(--text);
 }
 
 .profile-text p {
   margin-top: 2px;
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text);
 }
 
 /*aboutme*/
 .aboutme {
     position: absolute;
-    bottom: 160px;
-    width: 267px;
-    height: 70px;
+    bottom: 180px;
+    width: 287px;
+    height: 90px;
     background: white; /* this becomes the border */
     color: var(--text);
     display: flex;
@@ -227,8 +227,8 @@ body {
     right: 0px;
     background: white;
     color: var(--text);
-    width: 379px;
-    height: 100px;
+    width: 390px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -275,8 +275,8 @@ body {
 }
 
 .imgsos{
-    width: 50px;
-    height: 70px;
+    width: 70px;
+    height: 80px;
 }
 
 .imgsos a {
@@ -285,8 +285,8 @@ body {
     align-items: center;
     gap: 6px;
 
-    width: 50px;
-    height: 60px;
+    width: 70px;
+    height: 80px;
 
     text-decoration: none;
     transition: transform 0.2s ease;
@@ -297,15 +297,15 @@ body {
 }
 
 .imgsos img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
 }
 
 .line{
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 40px;
     background-color: white;
     clip-path: polygon(31% 0, 0 0, 0 100%, 0 40%);
 }
