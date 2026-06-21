@@ -1,0 +1,92 @@
+.prj-pnl{
+    position: absolute;
+  width: var(--crl-size);
+  height: var(--crl-size);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  padding: 90px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  z-index: 6;
+  transition: opacity 0.4s ease, clip-path 0.7s ease;
+
+  clip-path: circle(0% at center);
+}
+
+.prj-cont{
+    height: 100%;
+  overflow-y: auto;
+
+  color: white;
+  font-family: var(--font);
+  padding: 100px 70px;
+  text-align: center;
+}
+
+
+.hero.prj-opn .crl-blr {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero.prj-opn .prj-pnl {
+  opacity: 1;
+  pointer-events: auto;
+  clip-path: circle(100% at center);
+}
+
+.hero.prj-opn .prj-cont {
+  pointer-events: auto;
+}
+
+.hide{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
+
+.prj-cont h1{
+    padding-bottom: 20px;
+}
+
+.prj-list{
+    position: relative;
+    display: block;
+
+    width: 100%;
+    max-width: 720px;
+    height: 140px;
+
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    overflow: hidden;
+
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.prj-list:hover{
+    transform: translateY(5px);
+}
+
+.prj-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prj-list h3{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.55);
+}

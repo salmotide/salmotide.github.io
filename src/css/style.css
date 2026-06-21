@@ -40,7 +40,7 @@ body {
 }
 
 /* circle image in center */
-.circle {
+.crl {
   position: absolute;
   inset: 0;
   background-image: var(--bg-img);
@@ -51,10 +51,10 @@ body {
 }
 
 /* circle border + small lines */
-.circle-ui {
+.crl-ui {
   position: absolute;
-  width: var(--circle-size);
-  height: var(--circle-size);
+  width: var(--crl-size);
+  height: var(--crl-size);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -65,7 +65,7 @@ body {
 }
 
 /* small outer tick lines */
-.circle-ui::before {
+.crl-ui::before {
   content: "";
   position: absolute;
   inset: -22px;
@@ -83,15 +83,37 @@ body {
     black 48.5% 50%,
     transparent 70% 100%
   );
+  z-index: 5;
 }
 
 /* inner thin border */
-.circle-ui::after {
+.crl-ui::after {
   content: "";
   position: absolute;
   inset: 12px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
+}
+
+.crl-blr{
+  position: absolute;
+  width: var(--crl-size);
+  height: var(--crl-size);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  pointer-events: none;
+
+  z-index: 4;
+  transition: opacity 0.4s ease;
 }
 
 /* profile */
@@ -109,9 +131,22 @@ body {
   gap: 18px;
   z-index: 4;
   border: 2px solid white;
+  text-decoration: none;
+  cursor: pointer;
+  isolation: isolate;
 }
 
-.profile:hover {
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card-left);
+  border-radius: 10px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.profile:hover::before {
     background: var(--bg-card-left-hover);
 }
 
@@ -241,7 +276,7 @@ body {
 
 .imgsos{
     width: 50px;
-    height: 50px;
+    height: 70px;
 }
 
 .imgsos a {
@@ -268,7 +303,16 @@ body {
 }
 
 .line{
-    width: 50px;
-    height: 3px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
     background-color: white;
+    clip-path: polygon(31% 0, 0 0, 0 100%, 0 40%);
+}
+
+.profile,
+.sosial,
+.imgsld,
+.btnproject {
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }

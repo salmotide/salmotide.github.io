@@ -7,10 +7,10 @@
     --bg-card-right: linear-gradient(325deg, #ffffff, #a0a5aa);
     --bg-card-right-hover: linear-gradient(325deg, #ffffff, #bac0c5);
     --sec-bg: #18202d;
-    --bg-img: url(../img/hatsu.png);
+    --bg-img: url(../img/hatsu.webp);
     --low: rgba(0, 0, 0, 0.25);
 
-    --circle-radius: 66vmin;
-    --circle-size: calc(var(--circle-radius) * 2);
+    --crl-radius: 66vmin;
+    --crl-size: calc(var(--crl-radius) * 2);
     --ui-color: rgba(255, 255, 255, 0.65);
 }

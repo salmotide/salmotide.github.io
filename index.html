@@ -12,48 +12,62 @@
 <body>
     <div class="hero">
         <div class="bg-low"></div>
-        <div class="circle"></div>
-        <div class="circle-ui"></div>
-        <img class="bg" src="src/img/hatsu.png" alt="Logo" width="100%" height="100%">
+        <div class="crl"></div>
+        <div class="crl-ui"></div>
+        <div class="crl-blr"></div>
+        <div class="abt-pnl">
+            <div class="abt-cont"></div>
+        </div>
+        <div class="prj-pnl">
+            <div class="prj-cont"></div>
+        </div>
 
-        <div class="profile">
+
+        <img class="bg" src="src/img/hatsu.webp" alt="Logo" width="100%" height="100%">
+
+        <a href="#" class="profile opn-abt">
             <img class="profile-pic" src="src/img/logo.png" alt="Profile Picture">
             
             <div class="profile-text">
                 <h1>Salmotide</h1>
                 <p>[ Frontend Developer ]</p>
             </div>
-        </div>
+        </a>
 
-        <a href="#" class="aboutme">
+        <a href="#" class="aboutme opn-abt">
             <h1>About Me</h1>
         </a>
 
-        <a href="#" class="btnproject">
+        <a href="#" class="btnproject opn-prj">
             <h1>My Project</h1>
         </a>
 
-        <div class="imgsld">
-            <img class="sld curn" src="src/img/projects/bot.webp" alt="botwa">
-            <img class="sld next" src="src/img/projects/desktop.webp" alt="desktop">
-        </div>
+            <a href="#" class="imgsld opn-prj">
+                <img class="sld curn" src="src/img/projects/bot.webp" alt="botwa">
+                <img class="sld next" src="src/img/projects/desktop.webp" alt="desktop">
+                <div class="jud">
+                    <h3>Sample project</h3>
+                </div>
+            </a>
 
         <div class="sosial">
             <div class="imgsos">
-                <a href="https://github.com/salmotide">
-                    <img src="src/img/icon/git.webp" alt="Gitub" width="100%" height="100%">
                 <div class="line"></div>
+                <a href="https://github.com/salmotide">
+                    <img class="imgo" src="src/img/icon/git.webp" alt="Gitub" width="100%" height="100%">
                 </a>
             </div>
 
             <div class="imgsos">
-                <a href="https://www.youtube.com/@salmotide">
-                    <img src="src/img/icon/yt.webp" alt="YouTube" width="100%" height="100%">
                 <div class="line"></div>
+                <a class="imgo" href="https://www.youtube.com/@salmotide">
+                    <img src="src/img/icon/yt.webp" alt="YouTube" width="100%" height="100%">
                 </a>
             </div>
         </div>
     </div>
-    <script src="src/js/project.js"></script>
+    <script type="module" src="src/js/imgsld.js"></script>
+    <script type="module" src="src/js/project.js"></script>
+    <script type="module" src="src/js/about.js"></script>
 </body>
 </html>

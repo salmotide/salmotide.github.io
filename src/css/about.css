@@ -1,0 +1,57 @@
+.abt-pnl{
+    position: absolute;
+  width: var(--crl-size);
+  height: var(--crl-size);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  padding: 90px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  z-index: 6;
+  transition: opacity 0.4s ease, clip-path 0.7s ease;
+
+  clip-path: circle(0% at center);
+}
+
+.abt-cont{
+    height: 100%;
+  overflow-y: auto;
+
+  color: white;
+  font-family: var(--font);
+  padding: 100px 70px;
+  text-align: center;
+}
+
+
+.hero.abt-opn .crl-blr {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.hero.abt-opn .abt-pnl {
+  opacity: 1;
+  pointer-events: none;
+  clip-path: circle(100% at center);
+}
+
+.hero.abt-opn .abt-cont {
+  pointer-events: auto;
+}
+
+.hide{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
+
+opn{
+  opacity: 100;
+  pointer-events: auto;
+  transform: translateY(-10px);
+}

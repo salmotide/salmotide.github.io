@@ -1,49 +1,74 @@
-const images = [
-  "src/img/projects/bot.webp",
-  "src/img/projects/desktop.webp",
-  "src/img/projects/porto.webp",
-];
+function loadCSS() {
+    const existingCSS = document.getElementById("prj-sty");
 
-const currentImg = document.querySelector(".curn");
-const nextImg = document.querySelector(".next");
+    if (existingCSS){
+        return;
+    }
+    
+    const link = document.createElement("link");
+    link.id = "prj-sty"
+    link.rel = "stylesheet"
+    link.href = "src/css/project.css"
 
-let currentIndex = 0;
+    document.head.appendChild(link);
 
-function getRandomImage() {
-  let randomIndex;
-
-  do {
-    randomIndex = Math.floor(Math.random() * images.length);
-  } while (randomIndex === currentIndex);
-
-  currentIndex = randomIndex;
-  return images[randomIndex];
+    console.log("berahsilprj");
 }
 
-function changeImage() {
-  const newImage = getRandomImage();
+const hero = document.querySelector(".hero");
+const opnprj = document.querySelectorAll(".opn-prj");
+const prjcont = document.querySelector(".prj-cont");
+const prl = document.querySelector(".imgsld");
+const abt = document.querySelector(".aboutme");
+const prj = document.querySelector(".btnproject");
+const prjnm = document.querySelector(".btnproject h1");
 
-  // 1. zoom current image first
-  currentImg.classList.add("zoom");
+const prjtxt = `
+<h1>My Project</h1>
 
-  // 2. wait before revealing next image
-  setTimeout(() => {
-    nextImg.src = newImage;
+<a class="prj-list" href="https://github.com/salmotide/ocean-startpage">
+    <img class="prj-img" src="src/img/projects/ocstartpage.webp" alt="Ocean StartPage">
+    <h3>My Startpage</h3>
+</a>
 
-    nextImg.classList.remove("show");
-    void nextImg.offsetWidth;
+<a class="prj-list" href="https://github.com/salmotide/SalBot">
+    <img class="prj-img" src="src/img/projects/bot.webp">
+    <h3>bot whatsapp</h3>
+</a>
 
-    nextImg.classList.add("show");
+<a class="prj-list" href="https://github.com/salmotide/linuxsetup">
+    <img class="prj-img" src="src/img/projects/desktop.webp">
+    <h3>My Linux Setup</h3>
+</a>
+`
 
-    // 3. after circle transition finishes, update current image
-    setTimeout(() => {
-      currentImg.src = newImage;
+opnprj.forEach(function(button){
+    button.addEventListener("click", function(event){
+        event.preventDefault();
 
-      currentImg.classList.remove("zoom");
-      nextImg.classList.remove("show");
-    }, 1000);
+        if (hero.classList.contains("prj-opn")) {
+            closePanels();
+            prjnm.textContent = "My Project";
+            return;
+        }
 
-  }, 600);
+        loadCSS();
+        prjcont.innerHTML = prjtxt;
+        hero.classList.remove("abt-opn");
+        hero.classList.add("prj-opn");
+        
+        prl.classList.add("hide");
+        abt.classList.add("hide");
+
+        prjnm.textContent = "Close";
+    });
+});
+
+function closePanels() {
+    hero.classList.remove("abt-opn");
+    hero.classList.remove("prj-opn");
+
+    prl.classList.remove("hide");
+    prj.classList.remove("hide");
+    abt.classList.remove("hide");
 }
-
-setInterval(changeImage, 4000);
