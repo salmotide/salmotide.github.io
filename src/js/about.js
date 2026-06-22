@@ -22,6 +22,7 @@ const abt = document.querySelector(".aboutme")
 const abtcont = document.querySelector(".abt-cont");
 const prl = document.querySelector(".imgsld");
 const prj = document.querySelector(".btnproject");
+const pro = document.querySelector(".profile");
 const abtnm = document.querySelector(".aboutme h1");
 
 const abttxt =`
@@ -50,7 +51,7 @@ opnabt.forEach(function(button) {
         abt.classList.remove("hide");
         prl.classList.add("hide");
         prj.classList.add("hide");
-        
+
         abtnm.textContent = "Close";
     });
 });
@@ -62,4 +63,5 @@ function closePanels() {
     prl.classList.remove("hide");
     prj.classList.remove("hide");
     abt.classList.remove("hide");
+    pro.classList.remove("left");
 }

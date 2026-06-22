@@ -1,0 +1,32 @@
+#hp-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    #hp-mobile {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+
+    .hero {
+        display: none;
+    }
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+}

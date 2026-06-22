@@ -1,7 +1,11 @@
+import { prjtxt } from "./listproj/dtproj.js";
+import menu from "./listproj/projlist.js";
+
 function loadCSS() {
     const existingCSS = document.getElementById("prj-sty");
 
     if (existingCSS){
+        existingCSS.href = `src/css/project.css?ts=${Date.now()}`;
         return;
     }
     
@@ -21,26 +25,8 @@ const prjcont = document.querySelector(".prj-cont");
 const prl = document.querySelector(".imgsld");
 const abt = document.querySelector(".aboutme");
 const prj = document.querySelector(".btnproject");
+const pro = document.querySelector(".profile");
 const prjnm = document.querySelector(".btnproject h1");
-
-const prjtxt = `
-<h1>My Project</h1>
-
-<a class="prj-list" href="https://github.com/salmotide/ocean-startpage">
-    <img class="prj-img" src="src/img/projects/ocstartpage.webp" alt="Ocean StartPage">
-    <h3>My Startpage</h3>
-</a>
-
-<a class="prj-list" href="https://github.com/salmotide/SalBot">
-    <img class="prj-img" src="src/img/projects/bot.webp">
-    <h3>bot whatsapp</h3>
-</a>
-
-<a class="prj-list" href="https://github.com/salmotide/linuxsetup">
-    <img class="prj-img" src="src/img/projects/desktop.webp">
-    <h3>My Linux Setup</h3>
-</a>
-`
 
 opnprj.forEach(function(button){
     button.addEventListener("click", function(event){
@@ -54,9 +40,12 @@ opnprj.forEach(function(button){
 
         loadCSS();
         prjcont.innerHTML = prjtxt;
+        menu.updateAll();
+
+
         hero.classList.remove("abt-opn");
         hero.classList.add("prj-opn");
-        
+
         prl.classList.add("hide");
         abt.classList.add("hide");
 
@@ -71,4 +60,5 @@ function closePanels() {
     prl.classList.remove("hide");
     prj.classList.remove("hide");
     abt.classList.remove("hide");
+    pro.classList.remove("left");
 }
