@@ -50,4 +50,5 @@
     justify-content: center;
     color: black;
     background-color: rgba(255,255,255,0.7);
+    z-index: 5;
 }
