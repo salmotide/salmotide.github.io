@@ -4,9 +4,11 @@ let ctgItem;
 let ctgCont;
 let viewLink;
 let viewImg;
+let menuCont;
 let catIdx = 0;
 let projIdx = 0;
 let domInitialized = false;
+let scrollInitialized = false;
 
 function initDom() {
     if (domInitialized) {
@@ -20,6 +22,7 @@ function initDom() {
 
     ctgItem = document.querySelectorAll(".item");
     ctgCont = document.querySelector(".projects");
+    menuCont = document.querySelector(".menu");
     viewLink = document.querySelector("#preview-link");
     viewImg = document.querySelector("#preview-img");
 
@@ -32,6 +35,54 @@ function initDom() {
     });
 
     domInitialized = true;
+
+    if (!scrollInitialized) {
+        initScrollHandlers();
+        scrollInitialized = true;
+    }
+}
+
+function initScrollHandlers() {
+    function onWheel(e) {
+        if (!ctgCont || !menuCont) return;
+
+        // If the pointer is over the menu:
+        // - if it's on an `.item` element, map wheel to category navigation
+        // - otherwise allow the menu to scroll natively
+        if (menuCont.contains(e.target)) {
+            const itemEl = e.target.closest('.item');
+            if (itemEl) {
+                e.preventDefault();
+                if (e.deltaY > 0) {
+                    catIdx = Math.min(catIdx + 1, projdat.categories.length - 1);
+                } else if (e.deltaY < 0) {
+                    catIdx = Math.max(catIdx - 1, 0);
+                }
+                setCtg(catIdx);
+            } else {
+                return; // allow native scrolling for the menu container
+            }
+        }
+
+        // If the pointer is over the projects area, map wheel to project navigation.
+        if (ctgCont.contains(e.target)) {
+            e.preventDefault();
+            const list = getProj();
+            if (!list || !list.length) return;
+
+            if (e.deltaY > 0) {
+                projIdx = Math.min(projIdx + 1, list.length - 1);
+            } else if (e.deltaY < 0) {
+                projIdx = Math.max(projIdx - 1, 0);
+            }
+
+            updateProj();
+            updateView();
+        }
+    }
+
+    // Use non-passive so we can call preventDefault when needed.
+    window.addEventListener("wheel", onWheel, { passive: false });
 }
 
 function getProj() {
