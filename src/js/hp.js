@@ -9,14 +9,13 @@ const hpui = `
 function initHpMobile() {
   const existing = document.getElementById("hp-mobile");
   const isMobile = window.matchMedia("(max-width: 800px)").matches;
+  if (!isMobile) return;
+  if (existing) {
+    existing.remove()
+    return;
+  };
 
-  if (isMobile) {
-    if (!existing) {
-      document.body.insertAdjacentHTML("afterbegin", hpui);
-    }
-  } else if (existing) {
-    existing.remove();
-  }
+  document.body.insertAdjacentHTML("afterbegin", hpui);
 }
 
 initHpMobile();
