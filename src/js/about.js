@@ -1,3 +1,5 @@
+import { abttxt } from "./about/rangka.js";
+
 function loadCSS() {
     const existingCSS = document.getElementById("abt-sty");
 
@@ -24,13 +26,6 @@ const prl = document.querySelector(".imgsld");
 const prj = document.querySelector(".btnproject");
 const pro = document.querySelector(".profile");
 const abtnm = document.querySelector(".aboutme h1");
-
-const abttxt =`
-<h1>About Me</h1>
-
-<p>Hello I am salmotide i like creating somting fun</p>
-
-`;
 
 opnabt.forEach(function(button) {
     button.addEventListener("click", function(event){
