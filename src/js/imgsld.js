@@ -46,4 +46,14 @@ function changeImage() {
   }, 600);
 }
 
-setInterval(changeImage, 4000);
+const interval = setInterval(changeImage, 4000);
+
+function stopSlider() {
+  clearInterval(interval);
+
+  currentImg.style.animation = "none";
+  nextImg.style.animation = "none";
+
+  currentImg.classList.remove("zoom");
+  nextImg.classList.remove("show");
+}

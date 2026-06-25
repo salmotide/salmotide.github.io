@@ -9,6 +9,7 @@ let catIdx = 0;
 let projIdx = 0;
 let domInitialized = false;
 let scrollInitialized = false;
+let projectItems = [];
 
 function initDom() {
     if (domInitialized) {
@@ -21,14 +22,12 @@ function initDom() {
     }
 
     ctgItem = document.querySelectorAll(".item");
-    ctgCont = document.querySelector(".projects");
+    ctgCont = document.querySelector(".projects"); // FIXED
     menuCont = document.querySelector(".menu");
     viewLink = document.querySelector("#preview-link");
     viewImg = document.querySelector("#preview-img");
 
-    if (!ctgItem.length || !ctgCont || !viewLink || !viewImg) {
-        return;
-    }
+    if (!ctgItem.length || !ctgCont || !viewLink || !viewImg) return;
 
     ctgItem.forEach((el, idx) => {
         el.onclick = () => setCtg(idx);
@@ -92,15 +91,16 @@ function getProj() {
         : projdat.projects.filter(p => p.ctg === category);
 }
 
-function updateItem(item, offset, reverse = false) {
-    const direction = reverse ? 1 : 1;
-    const x = direction * Math.abs(offset * offset) * 20;
+function updateItem(item, offset) {
+    const x = offset * offset * 20;
     const y = offset * 100;
     const opacity = 1 - Math.min(Math.abs(offset) * 0.3, 1);
 
     item.style.transform = `translate(${x}px, ${y}px)`;
     item.style.opacity = opacity;
-    item.classList.toggle("active", offset === 0);
+
+    if (offset === 0) item.classList.add("active");
+    else item.classList.remove("active");
 }
 
 function render() {
@@ -109,28 +109,38 @@ function render() {
     const filtered = getProj();
     ctgCont.innerHTML = "";
 
+    const frag = document.createDocumentFragment();
+
     filtered.forEach((proj, idx) => {
         const el = document.createElement("div");
         el.className = "project-item";
         el.textContent = proj.ttl;
+
         el.onclick = () => {
             projIdx = idx;
             updateAll();
         };
-        ctgCont.appendChild(el);
+
+        frag.appendChild(el);
     });
+
+    ctgCont.appendChild(frag);
+
+    // Cache project items as an array for faster iteration
+    projectItems = Array.from(ctgCont.querySelectorAll(".project-item"));
 
     projIdx = Math.max(0, Math.min(projIdx, filtered.length - 1));
     updateProj();
+    updateView();
 }
 
 function updateCtg() {
     if (!ctgItem) return;
-    ctgItem.forEach((el, idx) => updateItem(el, idx - catIdx, true));
+    ctgItem.forEach((el, idx) => updateItem(el, idx - catIdx));
 }
 
 function updateProj() {
-    document.querySelectorAll(".project-item").forEach((el, idx) =>
+    projectItems.forEach((el, idx) =>
         updateItem(el, idx - projIdx, false)
     );
 }

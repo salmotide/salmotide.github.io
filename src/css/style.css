@@ -68,24 +68,38 @@ body {
 .crl-ui::before {
   content: "";
   position: absolute;
-  inset: -22px;
+  inset: -10px;
   border-radius: 50%;
 
   background: repeating-conic-gradient(
     from 0deg,
-    var(--ui-color) 0deg 0.7deg,
-    transparent 0.7deg 4deg
+    var(--ui-color) 0deg 1.5deg,
+    transparent 1deg 6deg
+  );
+
+  /* IMPORTANT: hard donut cut */
+  -webkit-mask: radial-gradient(
+    circle,
+    transparent 0 65%,
+    black 60% 75%,
+    transparent 75% 100%
   );
 
   mask: radial-gradient(
     circle,
-    transparent 0 65%,
-    black 48.5% 50%,
-    transparent 70% 100%
+    transparent 0 70%,
+    black 60% 75%,
+    transparent 75% 100%
   );
-  z-index: 4;
 
-  /* animation: spin 150s linear infinite; */
+  will-change: transform;
+  /* animation: spin 230s linear infinite; */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
