@@ -62,12 +62,11 @@ opn{
 }
 
 .crl-card{
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: var(--crl-size);
-  width: var(--crl-size);
+  position: relative;
+  top: 14%;
+  left: 30%;
+  width: 40%;
+  height: 20%;
 }
 
 .crl-card h1, p{

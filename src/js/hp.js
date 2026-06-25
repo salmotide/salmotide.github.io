@@ -1,5 +1,5 @@
 const hpui = `
-<div id="hp-mobile">
+<div id="hp">
   <div class="header">
     <h1>Desktop Only first still progress for ui HandPhone</h1>
   </div>
@@ -7,7 +7,7 @@ const hpui = `
 `;
 
 function initHpMobile() {
-  const existing = document.getElementById("hp-mobile");
+  const existing = document.getElementById("hp");
   const isMobile = window.matchMedia("(max-width: 800px)").matches;
   if (!isMobile) return;
   if (existing) {
