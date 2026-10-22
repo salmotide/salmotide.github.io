@@ -1,0 +1,93 @@
+/* navbar */
+.nav-icon:hover .tooltip,
+.nav-icon:focus-visible .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%);
+}
+
+.side-nav {
+    position: fixed;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    background-color: var(--surface);
+    border-radius: 14px;
+}
+
+.nav-icon {
+    position: relative;
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+/* Saat kursor menyentuh ikon */
+.nav-icon:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateX(-3px);
+}
+
+.nav-icon.is-current {
+    color: var(--accent);
+}
+
+.tooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translate(6px, -50%);
+
+    padding: 7px 12px;
+    border-radius: 8px;
+
+    color: var(--text);
+    font-size: 13px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.nav-icon:hover .tooltip,
+.nav-icon:focus-visible .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%);
+}
+
+/* image */
+.navimg{
+    height: 30px;
+}

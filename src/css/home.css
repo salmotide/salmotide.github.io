@@ -1,0 +1,103 @@
+#home {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 8vh, 5rem) 1.5rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--text);
+}
+
+.home-copy {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 760px);
+}
+
+.eyebrow {
+    margin: 0 0 1.1rem;
+    color: var(--accent);
+    font: 700 .76rem/1.4 var(--font-display);
+    letter-spacing: .16em;
+}
+
+#home h1 {
+    font: 700 clamp(2.5rem, 7vw, 5.5rem)/1.12 var(--font-display);
+    letter-spacing: -.055em;
+}
+
+#home h1 span,
+#about h2 span {
+    color: transparent;
+    background: var(--gradient-ocean);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.home-role {
+    margin-top: .85rem;
+    color: #cbd5e1;
+    font: 700 clamp(1.2rem, 3vw, 1.8rem)/1.4 var(--font-display);
+}
+
+.home-role > span[aria-hidden="true"] { color: var(--accent); }
+#typed-role { color: #cbd5e1; }
+
+.typing-caret {
+    display: inline-block;
+    width: .62ch;
+    height: 1.05em;
+    margin-left: .12em;
+    border-right: 2px solid var(--accent);
+    vertical-align: -.12em;
+    animation: typing-blink .8s steps(1, end) infinite;
+}
+
+@keyframes typing-blink {
+    50% { opacity: 0; }
+}
+
+.home-intro {
+    max-width: 540px;
+    margin: 1.1rem auto 0;
+    color: var(--text-muted);
+    font-size: clamp(.98rem, 2vw, 1.1rem);
+    line-height: 1.8;
+}
+
+.home-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .8rem;
+    margin-top: 2rem;
+    padding: .85rem 1.2rem;
+    border: 1px solid #22d3ee66;
+    border-radius: 999px;
+    color: var(--text);
+    background: #0b1428bb;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.home-cta:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    background: var(--surface-hover);
+}
+
+.home-cta span { color: var(--accent); font-size: 1.2rem; }
+
+.home-cta:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-cta { transition: none; }
+    .typing-caret { animation: none; }
+}

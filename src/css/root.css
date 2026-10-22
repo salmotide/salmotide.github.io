@@ -1,0 +1,46 @@
+@font-face{
+   font-family: "Comic Shanns Mono";
+   src: url("../font/ComicShannsMonoNerdFont-Bold.otf") format("opentype");
+   font-weight: 700;
+   font-style: normal;
+}
+
+:root {
+
+   /* FONT */
+   --font-display: "Comic Shanns Mono", monospace;
+   --font-body: "Inter", sans-serif;
+
+    /* BACKGROUND & SURFACES */
+    --bg: #050B16;
+    --surface: #0B1428;
+    --surface-hover: #13213A;
+
+       /* BRAND & ACCENTS */
+    --primary: #1D4ED8;
+    --primary-hover: #2563EB;
+
+    --accent: #06B6D4;
+    --secondary: #14B8A6;
+
+       /* TEXT */
+    --text: #F8FAFC;
+    --text-muted: #94A3B8;
+    --text-on-primary: #FFFFFF;
+
+       /* BORDERS & EFFECTS */
+    --border: #24334D;
+    --focus: #06B6D4;
+
+       /* STATUS COLORS */
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+
+       /* GRADIENT */
+    --gradient-ocean: linear-gradient(
+        135deg,
+        #1D4ED8,
+        #06B6D4
+    );
+}

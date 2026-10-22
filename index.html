@@ -1,60 +1,233 @@
-<!DOCTYPE html> 
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio</title>
-    <link rel="icon"  href="src/img/logo.png" type="image/png">
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="stylesheet" href="src/css/config.css">
-    <link rel="stylesheet" href="src/css/imgsld.css">
-    <link rel="stylesheet" href="src/css/hp.css">
-</head>
-<body>
-    <div class="hero">
-        <div class="bg-low"></div>
-        <div class="crl"></div>
-        <div class="crl-ui"></div>
-        <div class="crl-blr"></div>
-        <div class="abt-pnl">
-            <div class="abt-cont"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salmotide | Portfolio</title>
+    <link rel="icon" href="src/img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="src/css/root.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="src/css/bghome.css" />
+    <link rel="stylesheet" href="src/css/nav.css">
+    <link rel="stylesheet" href="src/css/home.css">
+    <link rel="stylesheet" href="src/css/about.css">
+    <link rel="stylesheet" href="src/css/project.css">
+    <link rel="stylesheet" href="src/css/contact.css">
+    <link rel="stylesheet" href="src/css/fish.css" />
+    <link rel="stylesheet" href="src/css/footer.css">
+    <link rel="stylesheet" href="src/css/interfacehp.css">
+  </head>
+  <body>
+    <header>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a
+          href="#home"
+          class="nav-icon"
+          aria-label="Home"
+        >
+          <img src="src/img/logo.png" class="navimg">
+          <span class="tooltip">Home</span>
+        </a>
+
+        <a
+          href="#about"
+          class="nav-icon"
+          aria-label="About"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 11v5"></path>
+            <path d="M12 8h.01"></path>
+          </svg>
+          <span class="tooltip">About</span>
+        </a>
+
+        <a
+          href="#project"
+          class="nav-icon"
+          aria-label="Project"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="7" width="18" height="13" rx="2"></rect>
+            <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <path d="M3 12h18M10 12v2h4v-2"></path>
+          </svg>
+          <span class="tooltip">Projects</span>
+        </a>
+        <a href="#contact" class="nav-icon" aria-label="Contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 5h16v14H4z"></path>
+            <path d="m4 7 8 6 8-6"></path>
+          </svg>
+          <span class="tooltip">Contact</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="home-background">
+        <canvas class="cursor" aria-hidden="true"></canvas>
+        <div class="home-copy">
+          <p class="eyebrow">PORTFOLIO · WEB DEVELOPMENT</p>
+          <h1>Hi, I'm <span>salmotide</span></h1>
+          <p class="home-role"><span id="typed-role">Front-end developer</span><span class="typing-caret" aria-hidden="true"></span></p>
+          <p class="home-intro">I build thoughtful web experiences that feel clear, useful, and enjoyable to use.</p>
+          <a class="home-cta" href="#project">Explore my work <span aria-hidden="true">↘</span></a>
         </div>
-        <div class="prj-pnl">
-            <div class="prj-cont"></div>
+        <!-- Interactive pixel fish -->
+        <div class="ocean-mascot" id="oceanMascot">
+          <button
+            class="pixel-fish"
+            id="pixelFish"
+            type="button"
+            aria-label="Talk to the little ocean fish"
+            aria-expanded="false"
+            aria-controls="fishBubble"
+          >
+            <svg
+              class="fish-sprite"
+              id="fishSprite"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 12"
+              shape-rendering="crispEdges"
+              aria-hidden="true"
+            >
+              <!-- Tail -->
+              <g class="fish-tail">
+                <rect x="1" y="4" width="2" height="4" fill="#0D9488" />
+                <rect x="0" y="3" width="1" height="2" fill="#22D3EE" />
+                <rect x="0" y="7" width="1" height="2" fill="#22D3EE" />
+              </g>
+
+              <!-- Main body -->
+              <rect x="3" y="3" width="2" height="6" fill="#0891B2" />
+              <rect x="5" y="2" width="6" height="8" fill="#06B6D4" />
+              <rect x="7" y="1" width="3" height="1" fill="#22D3EE" />
+              <rect x="5" y="4" width="6" height="4" fill="#22D3EE" />
+
+              <!-- Fins -->
+              <rect x="6" y="1" width="2" height="1" fill="#14B8A6" />
+              <rect x="7" y="9" width="3" height="2" fill="#0D9488" />
+              <rect x="8" y="10" width="2" height="1" fill="#0F766E" />
+
+              <!-- Face -->
+              <rect x="11" y="3" width="2" height="6" fill="#0891B2" />
+              <rect x="13" y="4" width="1" height="4" fill="#06B6D4" />
+              <rect x="11" y="4" width="1" height="1" fill="#F8FAFC" />
+              <rect x="12" y="4" width="1" height="1" fill="#0B1428" />
+              <rect x="13" y="6" width="1" height="1" fill="#67E8F9" />
+            </svg>
+          </button>
+
+          <div
+            class="fish-bubble"
+            id="fishBubble"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            <p class="bubble-text">
+            Whoa, you startled me! Take a look around—there's plenty to explore here.
+            </p>
+            <button
+              class="bubble-close"
+              id="bubbleClose"
+              type="button"
+              aria-label="Close fish message"
+            >
+            </button>
+          </div>
         </div>
-
-
-        <img class="bg" src="src/img/hatsu.webp" alt="Logo" width="100%" height="100%">
-
-        <a href="https://github.com/salmotide" target="_blank" class="profile">
-            <img class="profile-pic" src="src/img/logo.png" alt="Profile Picture">
-            
-            <div class="profile-text">
-                <h1>Salmotide</h1>
-                <p>[ Frontend Developer ]</p>
+      </section>
+      <section id="about" aria-labelledby="about-title">
+        <canvas class="cursor"></canvas>
+        <div class="about-content">
+          <p class="eyebrow">A LITTLE ABOUT ME</p>
+          <h2 id="about-title">Hi, I'm <span>Salomo Putra Hadi Wijaya</span> (salmotide)</h2>
+          <p class="about-lead">I'm an Information Technology student who enjoys learning and building for the web.</p>
+          <div class="about-note">
+            <div class="about-group">
+              <h3>Languages</h3>
+              <ul class="about-tags" aria-label="Languages I speak">
+                <li>Indonesian</li>
+                <li>English</li>
+              </ul>
             </div>
-        </a>
+            <div class="about-group">
+              <h3>Technologies</h3>
+              <ul class="about-tags" aria-label="Programming languages and web technologies">
+                <li>JavaScript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>PHP</li>
+                <li>MySQL</li>
+                <li>And more</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="project" aria-labelledby="project-title">
+        <canvas class="cursor"></canvas>
+        <div class="project-content">
+          <p class="eyebrow">SELECTED WORK</p>
+          <h2 id="project-title">Things I've been building</h2>
+          <p class="project-intro">A few projects I've enjoyed working on.</p>
+          <div class="project-carousel" id="project-carousel" aria-label="Project carousel. Swipe, scroll, or use the arrow buttons to browse.">
+            <button class="carousel-control carousel-control--previous" id="project-previous" type="button" aria-label="Previous project">←</button>
+            <div class="project-grid" id="project-grid" aria-live="polite"></div>
+            <button class="carousel-control carousel-control--next" id="project-next" type="button" aria-label="Next project">→</button>
+          </div>
+          <p class="project-hint">Choose a project to bring it into focus. Select it again to see the details.</p>
+        </div>
+      </section>
 
-        <a href="#" class="aboutme opn-abt">
-            <h1>About Me</h1>
-        </a>
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="contact-content">
+          <p class="eyebrow">GET IN TOUCH</p>
+          <h2 id="contact-title">Let's make something together.</h2>
+          <p class="contact-intro">Have a question or an idea? I'd love to hear from you.</p>
+          <div class="contact-links" id="contact-links" aria-label="Contact and social links"></div>
+        </div>
+      </section>
 
+      <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
+        <button class="project-dialog__close" id="project-dialog-close" type="button" aria-label="Close project details">×</button>
+        <div class="project-dialog__content">
+          <div class="project-dialog__image-wrap">
+            <img class="project-dialog__image" id="project-dialog-image" src="" alt="">
+          </div>
+          <div class="project-dialog__details">
+            <p class="eyebrow">PROJECT DETAILS</p>
+            <h2 id="project-dialog-title"></h2>
+            <p class="project-dialog__description" id="project-dialog-description"></p>
+            <div class="project-dialog__links" id="project-dialog-links"></div>
+          </div>
+        </div>
+      </dialog>
+    </main>
 
-        <a href="#" class="btnproject opn-prj">
-            <h1>My Project</h1>
-        </a>
+    <footer>Made with care.</footer>
 
-            <a href="#" class="imgsld opn-prj">
-                <img class="sld curn" src="src/img/projects/bot.webp" alt="botwa">
-                <img class="sld next" src="src/img/projects/desktop.webp" alt="desktop">
-                <div class="jud">
-                    <h3>Sample project</h3>
-                </div>
-            </a>
-    </div>
-    <script type="module" src="src/js/imgsld.js"></script>
-    <script type="module" src="src/js/project.js"></script>
-    <script type="module" src="src/js/about.js"></script>
-    <script src="src/js/hp.js"></script>
-</body>
+    <script src="src/js/fish.js"></script>
+    <script src="src/js/bghome.js"></script>
+    <script src="src/js/cursor.js"></script>
+    <script src="src/js/project.js"></script>
+    <script src="src/js/home.js"></script>
+    <script src="src/js/interfacehp.js"></script>
+  </body>
 </html>

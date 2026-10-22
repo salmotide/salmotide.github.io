@@ -1,0 +1,62 @@
+@media (max-width: 760px) {
+    .side-nav {
+        top: auto;
+        right: 50%;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        flex-direction: row;
+        gap: 4px;
+        width: max-content;
+        max-width: calc(100vw - 24px);
+        padding: 5px;
+        border: 1px solid #24334dcc;
+        border-radius: 999px;
+        background: #0b1428eF;
+        box-shadow: 0 10px 32px #0008;
+        backdrop-filter: blur(16px);
+        transform: translateX(50%);
+    }
+
+    .nav-icon {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        border-radius: 50%;
+    }
+
+    .nav-icon.is-current {
+        color: var(--accent);
+        background: #06b6d41c;
+    }
+
+    .tooltip { display: none; }
+
+    #home { padding: 4rem 1.15rem 5.5rem; }
+    #about { padding: 3.75rem .9rem 5.5rem; }
+    #project { padding: 3.5rem .8rem 5.5rem; }
+    #contact { padding: 3.5rem 1rem 5.5rem; }
+
+    .project-content { width: 100%; }
+    .project-intro { margin-bottom: 1rem; }
+    .project-grid { height: clamp(225px, 36svh, 280px); }
+    .project-card { width: min(66vw, 280px); }
+    .project-hint { padding-inline: 2.5rem; }
+
+    footer {
+        bottom: calc(73px + env(safe-area-inset-bottom));
+        min-height: 0;
+        padding: .35rem .75rem;
+        font-size: .72rem;
+        pointer-events: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .nav-icon { width: 40px; height: 40px; flex-basis: 40px; }
+    .side-nav { gap: 2px; }
+    .project-dialog__content { gap: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .side-nav,
+    .nav-icon { scroll-behavior: auto; transition: none; }
+}

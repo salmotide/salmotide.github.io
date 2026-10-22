@@ -1,0 +1,38 @@
+#home.home-background {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+#home > .home-copy {
+  position: relative;
+  z-index: 1;
+}
+
+#about,
+#project,
+#contact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+#home > .cursor,
+#about > .cursor,
+#project > .cursor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#about > :not(.cursor),
+#project > :not(.cursor),
+#contact > :not(.cursor) {
+  position: relative;
+  z-index: 1;
+}
