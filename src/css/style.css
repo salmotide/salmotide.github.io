@@ -19,6 +19,34 @@ main > section {
     box-sizing: border-box;
 }
 
+.scroll-reveal {
+    opacity: 0;
+    translate: 0 28px;
+    transition:
+        opacity 520ms ease,
+        translate 760ms cubic-bezier(.22, 1, .36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: translate, opacity;
+}
+
+#project .project-card.scroll-reveal:not(.scroll-reveal--visible) {
+    opacity: 0 !important;
+}
+
+.scroll-reveal.scroll-reveal--visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .scroll-reveal.scroll-reveal--visible {
+        opacity: 1;
+        translate: none;
+        transition: none;
+    }
+}
+
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;

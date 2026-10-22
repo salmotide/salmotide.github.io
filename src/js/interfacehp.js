@@ -1,5 +1,5 @@
 const contactProfiles = [
-  { name: "Gmail", value: "maltio:salomowijaya28@gmail.com", type: "email", mark: "@" },
+  { name: "Gmail", value: "mailto:salomowijaya28@gmail.com", type: "email", mark: "@" },
   { name: "GitHub", value: "https://github.com/salmotide", type: "url", icon: "src/img/icon/git.webp" },
   { name: "YouTube", value: "https://www.youtube.com/@salmotide", type: "url", icon: "src/img/icon/yt.webp" },
   { name: "Instagram", value: "https://www.instagram.com/salmotide/", type: "url", icon: "src/img/icon/ig.webp" },

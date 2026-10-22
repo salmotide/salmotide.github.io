@@ -1,4 +1,6 @@
 #home {
+    height: 100vh;
+    height: 100svh;
     min-height: 100vh;
     min-height: 100svh;
     width: 100%;
@@ -10,6 +12,16 @@
     place-items: center;
     text-align: center;
     color: var(--text);
+    animation: home-open 1.25s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes home-open {
+    from { clip-path: inset(47% 47% 47% 47% round 12px); }
+    to { clip-path: inset(0 0 0 0 round 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #home { clip-path: none; animation: none; }
 }
 
 .home-copy {

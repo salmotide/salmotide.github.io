@@ -1,8 +1,5 @@
 /* WebGL fluid background animation. */
-function fluidSimulation(
-  canvas,
-  { autoCursor = true, initialSplat = true } = {},
-) {
+function fluidSimulation(canvas) {
   canvas.width = canvas.clientWidth;
   canvas.height = canvas.clientHeight;
 
@@ -32,7 +29,6 @@ function fluidSimulation(
     this.color = [30, 0, 300];
   }
   let pointers = [new pointerPrototype()];
-  let splatStack = [];
 
   const { gl, ext } = getWebGLContext(canvas);
   if (!gl) return function () {};
@@ -492,23 +488,7 @@ function fluidSimulation(
   }
 
   initFramebuffers();
-  if (initialSplat) {
-    multipleSplats(34);
-    for (let i = 0; i < 8; i++)
-      splatStack.push(10 + parseInt(Math.random() * 10));
-  }
-
   let lastColorChangeTime = Date.now();
-  let virtualSeeded = false,
-    orbitAngle = 0,
-    vPrevX = 0,
-    vPrevY = 0,
-    virtualColor = null,
-    lastVColorTime = 0;
-  const engineStart = Date.now();
-  const ORBIT_RADIUS = 300,
-    ORBIT_SPEED = 0.026,
-    ORBIT_START_DELAY = 700;
   let rafHandle = 0,
     destroyed = false;
 
@@ -517,49 +497,13 @@ function fluidSimulation(
   function update() {
     if (destroyed) return;
     resizeCanvas();
-    if (autoCursor) driveVirtualPointer();
     input();
     if (!config.PAUSED) step(0.016);
     render(null);
     rafHandle = requestAnimationFrame(update);
   }
 
-  // Invisible auto-cursor orbiting the centre forever on a gently breathing path
-  function driveVirtualPointer() {
-    if (Date.now() - engineStart < ORBIT_START_DELAY) return;
-    const cx = canvas.width / 2,
-      cy = canvas.height / 2;
-    const base = Math.min(
-      ORBIT_RADIUS,
-      canvas.width * 0.35,
-      canvas.height * 0.35,
-    );
-    const r = base * (0.72 + 0.28 * Math.sin(orbitAngle * 0.37));
-    orbitAngle += ORBIT_SPEED;
-    const x = cx + Math.cos(orbitAngle) * r,
-      y = cy + Math.sin(orbitAngle) * r;
-    if (!virtualSeeded) {
-      virtualSeeded = true;
-      vPrevX = x;
-      vPrevY = y;
-      return;
-    }
-    if (!virtualColor || Date.now() - lastVColorTime > 120) {
-      virtualColor = generateColor();
-      virtualColor.r *= 3.2;
-      virtualColor.g *= 3.2;
-      virtualColor.b *= 3.2;
-      lastVColorTime = Date.now();
-    }
-    const dx = (x - vPrevX) * 9.0,
-      dy = (y - vPrevY) * 9.0;
-    vPrevX = x;
-    vPrevY = y;
-    splat(x, y, dx, dy, virtualColor);
-  }
-
   function input() {
-    if (splatStack.length > 0) multipleSplats(splatStack.pop());
     for (let i = 0; i < pointers.length; i++) {
       const p = pointers[i];
       if (p.moved) {
@@ -700,22 +644,6 @@ function fluidSimulation(
     gl.uniform3f(splatProgram.uniforms.color, color.r, color.g, color.b);
     blit(density.write.fbo);
     density.swap();
-  }
-
-  function multipleSplats(amount) {
-    for (let i = 0; i < amount; i++) {
-      const color = generateColor();
-      color.r *= 10.0;
-      color.g *= 10.0;
-      color.b *= 10.0;
-      splat(
-        canvas.width * Math.random(),
-        canvas.height * Math.random(),
-        1000 * (Math.random() - 0.5),
-        1000 * (Math.random() - 0.5),
-        color,
-      );
-    }
   }
 
   function resizeCanvas() {
