@@ -100,34 +100,6 @@
     outline-offset: 4px;
 }
 
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    z-index: 30;
-    display: grid;
-    place-items: center;
-    width: 46px;
-    height: 46px;
-    border: 1px solid #06b6d455;
-    border-radius: 50%;
-    color: var(--text);
-    background: #0b1428e8;
-    box-shadow: 0 8px 24px #0006;
-    font-size: 1.45rem;
-    cursor: pointer;
-    transform: translateY(-50%);
-    transition: color .2s ease, background .2s ease, border-color .2s ease;
-}
-
-.carousel-control:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--surface-hover);
-}
-
-.carousel-control--previous { left: .25rem; }
-.carousel-control--next { right: .25rem; }
-
 .project-hint {
     margin: .3rem 0 0;
     color: var(--text-muted);
@@ -267,7 +239,6 @@
     #project { padding-block: 3.5rem; }
     .project-grid { height: clamp(235px, 38svh, 300px); }
     .project-card { width: min(64vw, 300px); min-width: 0; }
-    .carousel-control { width: 40px; height: 40px; }
 }
 
 @media (max-width: 520px) {
@@ -275,8 +246,6 @@
     .project-card { width: min(66vw, 280px); }
     .project-intro { margin-bottom: .8rem; }
     .project-hint { max-width: 260px; margin-inline: auto; line-height: 1.5; }
-    .carousel-control--previous { left: -.15rem; }
-    .carousel-control--next { right: -.15rem; }
 }
 
 @media (max-width: 760px) {
@@ -290,7 +259,6 @@
 
 @media (prefers-reduced-motion: reduce) {
     .project-card,
-    .carousel-control,
     .project-dialog__close,
     .project-link { transition: none; }
 }

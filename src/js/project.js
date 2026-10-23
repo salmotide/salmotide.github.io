@@ -24,8 +24,6 @@ const projects = [
 
 const projectGrid = document.querySelector("#project-grid");
 const projectCarousel = document.querySelector("#project-carousel");
-const previousProject = document.querySelector("#project-previous");
-const nextProject = document.querySelector("#project-next");
 const projectDialog = document.querySelector("#project-dialog");
 const projectDialogClose = document.querySelector("#project-dialog-close");
 const projectDialogImage = document.querySelector("#project-dialog-image");
@@ -154,9 +152,6 @@ projects.forEach((project, index) => {
 });
 
 renderCarousel();
-
-previousProject.addEventListener("click", () => moveSelection(-1));
-nextProject.addEventListener("click", () => moveSelection(1));
 
 projectCarousel.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
